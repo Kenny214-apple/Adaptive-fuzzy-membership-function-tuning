@@ -1,0 +1,69 @@
+[System]
+Name='tractor_torque_controller'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='speed_error'
+Range=[-10 10]
+NumMFs=5
+MF1='NL':'trimf',[-15 -10 -5]
+MF2='NS':'trimf',[-10 -5 0]
+MF3='ZE':'trimf',[-5 0 5]
+MF4='PS':'trimf',[0 5 10]
+MF5='PL':'trimf',[5 10 15]
+
+[Input2]
+Name='error_rate'
+Range=[-5 5]
+NumMFs=5
+MF1='NL':'trimf',[-7.5 -5 -2.5]
+MF2='NS':'trimf',[-5 -2.5 0]
+MF3='ZE':'trimf',[-2.5 0 2.5]
+MF4='PS':'trimf',[0 2.5 5]
+MF5='PL':'trimf',[2.5 5 7.5]
+
+[Output1]
+Name='TSR'
+Range=[0.4 0.7]
+NumMFs=5
+MF1='VL':'trimf',[0.33 0.4 0.48]
+MF2='L':'trimf',[0.4 0.48 0.55]
+MF3='M':'trimf',[0.48 0.55 0.62]
+MF4='H':'trimf',[0.55 0.62 0.7]
+MF5='VH':'trimf',[0.62 0.7 0.77]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 1 (1) : 1
+1 4, 2 (1) : 1
+1 5, 2 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 3, 2 (1) : 1
+2 4, 3 (1) : 1
+2 5, 3 (1) : 1
+3 1, 2 (1) : 1
+3 2, 2 (1) : 1
+3 3, 3 (1) : 1
+3 4, 4 (1) : 1
+3 5, 4 (1) : 1
+4 1, 3 (1) : 1
+4 2, 3 (1) : 1
+4 3, 4 (1) : 1
+4 4, 4 (1) : 1
+4 5, 5 (1) : 1
+5 1, 3 (1) : 1
+5 2, 4 (1) : 1
+5 3, 4 (1) : 1
+5 4, 5 (1) : 1
+5 5, 5 (1) : 1
